@@ -8,6 +8,6 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     html {
-        background-color: black;
+        background-color: ${({ theme }) => theme.background};;
     }
     `
