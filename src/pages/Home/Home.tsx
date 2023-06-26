@@ -1,5 +1,5 @@
 // import { CardCoffee } from './CardCoffee/CardCoffee'
-import { CardCoffeeTest } from './CardCoffeeTest/CardCoffeeTest'
+import { CardCoffee } from './CardCoffee/CardCoffee'
 import { HeroSection } from './HeroSection/HeroSection'
 import { HomeContainer } from './styles'
 
@@ -23,21 +23,21 @@ export const Home = () => {
     {
       id: '1',
       img: Express,
-      type: 'tradicional',
+      type: ['tradicional'],
       name: 'Expresso Tradicional',
       description: 'O tradicional café feito com água quente e grãos moídos',
     },
     {
       id: '2',
       img: Americano,
-      type: 'tradicional',
+      type: ['tradicional'],
       name: 'Expresso Americano',
       description: 'Expresso diluído, menos intenso que o tradicional',
     },
     {
       id: '3',
       img: Cremoso,
-      type: 'tradicional',
+      type: ['tradicional'],
       name: 'Expresso Cremoso',
       description: 'Café expresso tradicional com espuma cremosa',
     },
@@ -51,14 +51,14 @@ export const Home = () => {
     {
       id: '5',
       img: CafeComLeite,
-      type: 'tradicional',
+      type: ['tradicional', 'com leite'],
       name: 'Café com Leite',
       description: 'Meio a meio de expresso tradicional com leite vaporizado',
     },
     {
       id: '6',
       img: Latte,
-      type: 'tradicional',
+      type: ['tradicional', 'com leite'],
       name: 'Latte',
       description:
         'Uma dose de café expresso com o dobro de leite e espuma cremosa',
@@ -66,15 +66,15 @@ export const Home = () => {
     {
       id: '7',
       img: Capuccino,
-      type: 'tradicional',
-      name: 'Capuccino',
+      type: ['tradicional', 'com leite'],
+      name: 'Cappuccino',
       description:
         'Bebida com canela feita de doses iguais de café, leite e espuma',
     },
     {
       id: '8',
       img: Macchiato,
-      type: 'tradicional',
+      type: ['tradicional', 'com leite'],
       name: 'Macchiato',
       description:
         'Café expresso misturado com um pouco de leite quente e espuma',
@@ -82,14 +82,14 @@ export const Home = () => {
     {
       id: '9',
       img: Mocaccino,
-      type: 'tradicional',
+      type: ['tradicional', 'com leite'],
       name: 'Mocaccino',
       description: 'Café expresso com calda de chocolate, pouco leite e espuma',
     },
     {
       id: '10',
       img: ChocolateQuente,
-      type: 'tradicional',
+      type: ['especial', 'com leite'],
       name: 'Chocolate Quente',
       description:
         'Bebida feita com chocolate dissolvido no leite quente e café',
@@ -97,7 +97,7 @@ export const Home = () => {
     {
       id: '11',
       img: Cubano,
-      type: 'tradicional',
+      type: ['especial', 'alcoólico', 'gelado'],
       name: 'Cubano',
       description:
         'Drink gelado de café expresso com rum, creme de leite e hortelã',
@@ -105,21 +105,21 @@ export const Home = () => {
     {
       id: '12',
       img: Havaiano,
-      type: 'tradicional',
+      type: ['especial'],
       name: 'Havaiano',
       description: 'Bebida adocicada preparada com café e leite de coco',
     },
     {
       id: '13',
       img: Arabe,
-      type: 'tradicional',
+      type: ['especial'],
       name: 'Árabe',
       description: 'Bebida preparada com grãos de café árabe e especiarias',
     },
     {
       id: '14',
       img: Irlandes,
-      type: 'tradicional',
+      type: ['especial', 'alcoólico'],
       name: 'Irlandês',
       description: 'Bebida a base de café, uísque irlandês, açúcar e chantilly',
     },
@@ -127,9 +127,7 @@ export const Home = () => {
   return (
     <HomeContainer>
       <HeroSection />
-      {/* <CardCoffee /> */}
-
-      <CardCoffeeTest menuCoffee={menuCoffee} />
+      <CardCoffee menuCoffee={menuCoffee} />
     </HomeContainer>
   )
 }

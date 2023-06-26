@@ -4,7 +4,10 @@ export const CardContainer = styled.div`
   height: 100vh;
 
   & > section {
-    padding: 0 160px;
+    padding: 0 0 157px 0;
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto;
   }
 
   .title_coffe {
@@ -16,7 +19,20 @@ export const CardContainer = styled.div`
     margin-bottom: 54px;
   }
 
-  & > section > article {
+  .container_card {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    column-gap: 32px;
+    row-gap: 40px;
+  }
+
+  @media (max-width: 1080px) {
+    .container_card {
+      grid-template-columns: repeat(3, auto);
+    }
+  }
+
+  .container_card > article {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -28,6 +44,11 @@ export const CardContainer = styled.div`
 
     border-radius: 6px 36px;
     background-color: ${({ theme }) => theme['base-card']};
+  }
+
+  .wrapper_types {
+    display: flex;
+    gap: 4px;
   }
 
   .container_image {
