@@ -4,7 +4,7 @@ export const CardContainer = styled.div`
   height: 100vh;
 
   & > section {
-    padding: 0 160px;
+    padding: 0 160px 157px 160px;
   }
 
   .title_coffe {
@@ -16,7 +16,14 @@ export const CardContainer = styled.div`
     margin-bottom: 54px;
   }
 
-  & > section > article {
+  .container_card {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    column-gap: 32px;
+    row-gap: 40px;
+  }
+
+  .container_card > article {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -28,6 +35,11 @@ export const CardContainer = styled.div`
 
     border-radius: 6px 36px;
     background-color: ${({ theme }) => theme['base-card']};
+  }
+
+  .wrapper_types {
+    display: flex;
+    gap: 4px;
   }
 
   .container_image {
