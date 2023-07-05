@@ -14,7 +14,8 @@ export const CheckoutContainer = styled.section`
     height: 640px;
   }
 
-  .container_form > h3 {
+  .container_form > h3,
+  .container_right > h3 {
     font-size: 18px;
     font-family: 'Baloo 2', cursive;
     font-style: normal;
@@ -135,11 +136,55 @@ export const CheckoutContainer = styled.section`
     background-color: ${({ theme }) => theme['base-card']};
   }
 
+  .container_forms_payments {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .container_form_payment {
+    display: flex;
+    padding: 16px;
+    align-items: center;
+    gap: 12px;
+    flex: 1 0 0;
+
+    background-color: ${({ theme }) => theme['base-button']};
+  }
+
+  .icon_payment {
+    color: ${({ theme }) => theme.purple};
+  }
+
+  .text_payment {
+    font-size: 12px;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%;
+    text-transform: uppercase;
+    color: ${({ theme }) => theme['base-text']};
+  }
+
   /* RIGHT */
+  .container_right {
+    width: 100%;
+    max-width: 448px;
+  }
+
   .container_cart {
     width: 100%;
     max-width: 448px;
-    height: 498px;
-    background-color: rebeccapurple;
+    padding: 40px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+
+    border-radius: 6px 44px;
+    background-color: ${({ theme }) => theme['base-card']};
+
+    margin-top: 15px;
   }
 `
