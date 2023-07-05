@@ -6,6 +6,7 @@ import {
   Money,
 } from 'phosphor-react'
 import { CheckoutContainer } from './styles'
+import { CartCard } from '../../componentes/CartCard/CartCard'
 
 export const Checkout = () => {
   return (
@@ -66,7 +67,10 @@ export const Checkout = () => {
 
       <article className="container_right">
         <h3>Cafés selecionados</h3>
-        <div className="container_cart"></div>
+        <div className="container_cart">
+          <CartCard />
+          <CartCard />
+        </div>
       </article>
     </CheckoutContainer>
   )
