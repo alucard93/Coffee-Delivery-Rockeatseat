@@ -187,4 +187,60 @@ export const CheckoutContainer = styled.section`
 
     margin-top: 15px;
   }
+
+  .container_paragraph {
+    display: flex;
+    width: 100%;
+
+    justify-content: space-between;
+  }
+
+  .text_total {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+
+    font-weight: 400;
+    line-height: 130%;
+
+    color: ${({ theme }) => theme['base-text']};
+  }
+
+  .text_money,
+  .text_price_cart {
+    font-family: 'Roboto', sans-serif;
+
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%;
+
+    color: ${({ theme }) => theme['base-text']};
+  }
+
+  .container_paragraph_total {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .text_total_last {
+    font-family: 'Roboto', sans-serif;
+
+    font-size: 20px;
+
+    font-weight: 700;
+    line-height: 130%;
+    color: ${({ theme }) => theme['base-subtitle']};
+  }
+
+  .text_money_last,
+  .text_price_cart_last {
+    font-family: 'Roboto', sans-serif;
+
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 130%;
+    color: ${({ theme }) => theme['base-subtitle']};
+  }
 `
