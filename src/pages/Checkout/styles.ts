@@ -243,4 +243,27 @@ export const CheckoutContainer = styled.section`
     line-height: 130%;
     color: ${({ theme }) => theme['base-subtitle']};
   }
+
+  .confirm_button {
+    display: flex;
+    padding: 12px 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    align-self: stretch;
+
+    border-radius: 6px;
+    border-color: ${({ theme }) => theme['yellow']};
+    background-color: ${({ theme }) => theme['yellow']};
+    border-style: none;
+
+    font-family: 'Roboto', sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 700;
+    line-height: 160%;
+    text-transform: uppercase;
+    color: ${({ theme }) => theme['white']};
+  }
 `

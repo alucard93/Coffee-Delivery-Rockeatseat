@@ -88,6 +88,7 @@ export const Checkout = () => {
               R$ <span className="text_price_cart_last">33,20</span>
             </p>
           </div>
+          <button className="confirm_button">CONFIRMAR PEDIDO</button>
         </div>
       </article>
     </CheckoutContainer>
