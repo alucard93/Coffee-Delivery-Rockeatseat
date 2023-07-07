@@ -11,12 +11,12 @@ import { CartCard } from '../../componentes/CartCard/CartCard'
 import { useForm } from 'react-hook-form'
 
 export const Checkout = () => {
-  const formRef = useRef()
   const [paymentMethod, setPaymentMethod] = useState(null)
 
   const {
     register,
     handleSubmit,
+    trigger,
     formState: { errors },
   } = useForm()
 
@@ -26,10 +26,12 @@ export const Checkout = () => {
     setPaymentMethod(method)
   }
 
-  const handleFormSubmit = () => {
-    const formData = new FormData(formRef.current)
-    const data = Object.fromEntries(formData.entries())
-    onSubmit(data)
+  const handleValidateAndSubmit = () => {
+    trigger().then((isValid) => {
+      if (isValid) {
+        handleSubmit(onSubmit)()
+      }
+    })
   }
 
   return (
@@ -45,51 +47,58 @@ export const Checkout = () => {
             </div>
           </div>
 
-          <form ref={formRef} onSubmit={handleSubmit(onSubmit)}>
+          <form>
             <input
               className="cep"
               type="text"
               placeholder="CEP"
-              {...register('cep')}
+              {...register('cep', { required: true })}
             />
+            {errors.cep && <span>Cep é obrigatório</span>}
+
             <input
               className="street"
               type="text"
               placeholder="Rua"
-              {...register('street')}
+              {...register('street', { required: true })}
             />
+            {errors.street && <span>Rua é obrigatória</span>}
             <input
               className="number"
               type="number"
               placeholder="Número"
-              {...register('number')}
+              {...register('number', { required: true })}
             />
+            {errors.number && <span>Número é obrigatório</span>}
             <input
               className="complement"
               type="text"
               placeholder="Complemento"
-              {...register('complement')}
+              {...register('complement', { required: true })}
             />
+            {errors.complement && <span>Complemento é obrigatório</span>}
             <input
               className="district"
               type="text"
               placeholder="Bairro"
-              {...register('district')}
+              {...register('district', { required: true })}
             />
+            {errors.district && <span>Bairro é obrigatório</span>}
             <input
               className="city"
               type="text"
               placeholder="Cidade"
-              {...register('city')}
+              {...register('city', { required: true })}
             />
+            {errors.city && <span>Cidade é obrigatória</span>}
             <input
               className="uf"
               type="text"
               placeholder="UF"
-              {...register('uf')}
+              {...register('uf', { required: true })}
             />
+            {errors.uf && <span>Cep é obrigatório</span>}
           </form>
-
         </div>
 
         <div className="container_wrapper_payment">
@@ -153,7 +162,7 @@ export const Checkout = () => {
               R$ <span className="text_price_cart_last">33,20</span>
             </p>
           </div>
-          <button className="confirm_button" onClick={handleFormSubmit}>
+          <button className="confirm_button" onClick={handleValidateAndSubmit}>
             CONFIRMAR PEDIDO
           </button>
         </div>
