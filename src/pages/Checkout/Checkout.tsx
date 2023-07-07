@@ -1,3 +1,4 @@
+import { useRef, useState } from 'react'
 import {
   CurrencyDollar,
   MapPinLine,
@@ -7,8 +8,30 @@ import {
 } from 'phosphor-react'
 import { CheckoutContainer } from './styles'
 import { CartCard } from '../../componentes/CartCard/CartCard'
+import { useForm } from 'react-hook-form'
 
 export const Checkout = () => {
+  const formRef = useRef()
+  const [paymentMethod, setPaymentMethod] = useState(null)
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
+
+  const onSubmit = (data) => console.log(paymentMethod, data)
+
+  const handlePaymentMethod = (method) => {
+    setPaymentMethod(method)
+  }
+
+  const handleFormSubmit = () => {
+    const formData = new FormData(formRef.current)
+    const data = Object.fromEntries(formData.entries())
+    onSubmit(data)
+  }
+
   return (
     <CheckoutContainer>
       <article className="container_form">
@@ -22,20 +45,53 @@ export const Checkout = () => {
             </div>
           </div>
 
-          <form>
-            <input className="cep" type="text" placeholder="CEP" />
-            <input className="street" type="text" placeholder="Rua" />
-            <input className="number" type="number" placeholder="Número" />
+          <form ref={formRef} onSubmit={handleSubmit(onSubmit)}>
+            <input
+              className="cep"
+              type="text"
+              placeholder="CEP"
+              {...register('cep')}
+            />
+            <input
+              className="street"
+              type="text"
+              placeholder="Rua"
+              {...register('street')}
+            />
+            <input
+              className="number"
+              type="number"
+              placeholder="Número"
+              {...register('number')}
+            />
             <input
               className="complement"
               type="text"
               placeholder="Complemento"
+              {...register('complement')}
             />
-            <input className="district" type="text" placeholder="Bairro" />
-            <input className="city" type="text" placeholder="Cidade" />
-            <input className="uf" type="text" placeholder="UF" />
+            <input
+              className="district"
+              type="text"
+              placeholder="Bairro"
+              {...register('district')}
+            />
+            <input
+              className="city"
+              type="text"
+              placeholder="Cidade"
+              {...register('city')}
+            />
+            <input
+              className="uf"
+              type="text"
+              placeholder="UF"
+              {...register('uf')}
+            />
           </form>
+
         </div>
+
         <div className="container_wrapper_payment">
           <div className="container_icon_text">
             <CurrencyDollar size={22} />
@@ -47,17 +103,26 @@ export const Checkout = () => {
             </div>
           </div>
           <div className="container_forms_payments">
-            <div className="container_form_payment">
+            <div
+              className="container_form_payment"
+              onClick={() => handlePaymentMethod('Cartão de Crédito')}
+            >
               <CreditCard className="icon_payment" size={22} />
               <p className="text_payment">CARTÃO DE CRÉDITO</p>
             </div>
 
-            <div className="container_form_payment">
+            <div
+              className="container_form_payment"
+              onClick={() => handlePaymentMethod('Cartão de Débito')}
+            >
               <Bank className="icon_payment" size={22} />
               <p className="text_payment">CARTÃO DE DÉDITO</p>
             </div>
 
-            <div className="container_form_payment">
+            <div
+              className="container_form_payment"
+              onClick={() => handlePaymentMethod('Dinheiro')}
+            >
               <Money className="icon_payment" size={22} />
               <p className="text_payment">DINHEIRO</p>
             </div>
@@ -88,7 +153,9 @@ export const Checkout = () => {
               R$ <span className="text_price_cart_last">33,20</span>
             </p>
           </div>
-          <button className="confirm_button">CONFIRMAR PEDIDO</button>
+          <button className="confirm_button" onClick={handleFormSubmit}>
+            CONFIRMAR PEDIDO
+          </button>
         </div>
       </article>
     </CheckoutContainer>
