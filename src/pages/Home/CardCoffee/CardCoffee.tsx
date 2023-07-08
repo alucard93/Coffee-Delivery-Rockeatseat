@@ -1,6 +1,7 @@
 import { CardContainer } from './styles'
 import { Minus, Plus } from 'phosphor-react'
 import ButtonCard from '../../../assets/Button_Card.svg'
+import { useState } from 'react'
 
 interface ICardCoffee {
   id: string
@@ -15,6 +16,16 @@ interface IMenuCoffee {
 }
 
 export const CardCoffee = ({ menuCoffee }: IMenuCoffee) => {
+  const [selectedCardIds, setSelectedCardIds] = useState<string[]>([])
+
+  const handlePlusClick = (cardId: string) => {
+    setSelectedCardIds((prevSelectedCardIds) => [
+      ...prevSelectedCardIds,
+      cardId,
+    ])
+  }
+  // console.log(selectedCardIds)
+
   return (
     <CardContainer>
       <section>
@@ -44,7 +55,7 @@ export const CardCoffee = ({ menuCoffee }: IMenuCoffee) => {
                       <div className="container_button">
                         <Minus size={14} />
                         <span>1</span>
-                        <Plus size={14} />
+                        <Plus size={14} onClick={() => handlePlusClick(id)} />
                       </div>
                       <figure className="container_icon_cart">
                         <img src={ButtonCard} alt="" />
