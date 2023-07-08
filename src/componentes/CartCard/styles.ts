@@ -2,20 +2,30 @@ import { styled } from 'styled-components'
 
 export const CartCardContainer = styled.div`
   display: flex;
-  position: relative;
+  flex-direction: column;
+
   width: 100%;
   max-width: 368px;
 
   gap: 20px;
   padding: 8px 4px;
 
-  &::before {
+  .teste {
+    display: flex;
+
+    width: 100%;
+    max-width: 368px;
+
+    gap: 20px;
+    padding: 8px 4px;
+  }
+  /* &::before {
     content: '';
     position: absolute;
     bottom: -24px;
     width: 100%;
     border: 1px solid ${({ theme }) => theme['base-button']};
-  }
+  } */
 
   .container_figure {
     overflow: hidden;

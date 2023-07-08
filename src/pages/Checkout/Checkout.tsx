@@ -143,24 +143,26 @@ export const Checkout = () => {
         <h3>Cafés selecionados</h3>
         <div className="container_cart">
           <CartCard />
-          <CartCard />
-          <div className="container_paragraph">
-            <p className="text_total">Total de itens</p>
-            <p className="text_money">
-              R$ <span className="text_price_cart">29,70</span>
-            </p>
-          </div>
-          <div className="container_paragraph">
-            <p className="text_total">Entrega</p>
-            <p className="text_money">
-              R$ <span className="text_price_cart">3,50</span>
-            </p>
-          </div>
-          <div className="container_paragraph_total">
-            <p className="text_total_last">Total</p>
-            <p className="text_money_last">
-              R$ <span className="text_price_cart_last">33,20</span>
-            </p>
+          {/* <CartCard /> */}
+          <div className="container_paragraphs">
+            <div className="container_paragraph top">
+              <p className="text_total">Total de itens</p>
+              <p className="text_money">
+                R$ <span className="text_price_cart">29,70</span>
+              </p>
+            </div>
+            <div className="container_paragraph">
+              <p className="text_total">Entrega</p>
+              <p className="text_money">
+                R$ <span className="text_price_cart">3,50</span>
+              </p>
+            </div>
+            <div className="container_paragraph_total">
+              <p className="text_total_last">Total</p>
+              <p className="text_money_last">
+                R$ <span className="text_price_cart_last">33,20</span>
+              </p>
+            </div>
           </div>
           <button className="confirm_button" onClick={handleValidateAndSubmit}>
             CONFIRMAR PEDIDO

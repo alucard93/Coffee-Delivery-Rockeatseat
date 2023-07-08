@@ -180,19 +180,28 @@ export const CheckoutContainer = styled.section`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 24px;
+    /* gap: 24px; */
 
     border-radius: 6px 44px;
     background-color: ${({ theme }) => theme['base-card']};
+  }
 
-    margin-top: 15px;
+  .container_paragraphs {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 24px;
   }
 
   .container_paragraph {
     display: flex;
     width: 100%;
-
     justify-content: space-between;
+  }
+
+  .top {
+    margin-top: 11px;
   }
 
   .text_total {
