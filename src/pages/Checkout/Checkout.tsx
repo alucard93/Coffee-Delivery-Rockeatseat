@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import {
   CurrencyDollar,
   MapPinLine,
@@ -7,11 +7,14 @@ import {
   Money,
 } from 'phosphor-react'
 import { CheckoutContainer } from './styles'
-import { CartCard } from '../../componentes/CartCard/CartCard'
+import { CartCard } from './CartCard/CartCard'
 import { useForm } from 'react-hook-form'
+import { ProductsContext } from '../../contexts/ProductsContext'
 
 export const Checkout = () => {
   const [paymentMethod, setPaymentMethod] = useState(null)
+  const { products } = useContext(ProductsContext)
+  console.log(products)
 
   const {
     register,
@@ -20,9 +23,9 @@ export const Checkout = () => {
     formState: { errors },
   } = useForm()
 
-  const onSubmit = (data) => console.log(paymentMethod, data)
+  const onSubmit = (data: any) => console.log(paymentMethod, data)
 
-  const handlePaymentMethod = (method) => {
+  const handlePaymentMethod = (method: any) => {
     setPaymentMethod(method)
   }
 
@@ -46,7 +49,6 @@ export const Checkout = () => {
               <p>Informe o endereço onde deseja receber seu pedido</p>
             </div>
           </div>
-
           <form>
             <input
               className="cep"
@@ -55,7 +57,6 @@ export const Checkout = () => {
               {...register('cep', { required: true })}
             />
             {errors.cep && <span>Cep é obrigatório</span>}
-
             <input
               className="street"
               type="text"
@@ -100,7 +101,6 @@ export const Checkout = () => {
             {errors.uf && <span>Cep é obrigatório</span>}
           </form>
         </div>
-
         <div className="container_wrapper_payment">
           <div className="container_icon_text">
             <CurrencyDollar size={22} />
@@ -119,7 +119,6 @@ export const Checkout = () => {
               <CreditCard className="icon_payment" size={22} />
               <p className="text_payment">CARTÃO DE CRÉDITO</p>
             </div>
-
             <div
               className="container_form_payment"
               onClick={() => handlePaymentMethod('Cartão de Débito')}
@@ -127,7 +126,6 @@ export const Checkout = () => {
               <Bank className="icon_payment" size={22} />
               <p className="text_payment">CARTÃO DE DÉDITO</p>
             </div>
-
             <div
               className="container_form_payment"
               onClick={() => handlePaymentMethod('Dinheiro')}
@@ -138,12 +136,11 @@ export const Checkout = () => {
           </div>
         </div>
       </article>
-
       <article className="container_right">
         <h3>Cafés selecionados</h3>
         <div className="container_cart">
           <CartCard />
-          {/* <CartCard /> */}
+
           <div className="container_paragraphs">
             <div className="container_paragraph top">
               <p className="text_total">Total de itens</p>

@@ -1,31 +1,30 @@
-import React, { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { CartCardContainer } from './styles'
 import { Minus, Plus, Trash } from 'phosphor-react'
-import Express from '../../assets/Expresso.svg'
-import Americano from '../../assets/Americano.svg'
-import Cremoso from '../../assets/ExpressoCremoso.svg'
+import { ProductsContext } from '../../../contexts/ProductsContext'
+// import { IProduct } from '../../../interfaces/ProductInterfaces'
 
 export const CartCard = () => {
-  const [produCart, setProduCart] = useState([
-    {
-      id: '1',
-      img: Express,
-      type: ['tradicional'],
-      name: 'Expresso Tradicional',
-      description: 'O tradicional café feito com água quente e grãos moídos',
-    },
-    {
-      id: '2',
-      img: Americano,
-      type: ['tradicional'],
-      name: 'Expresso Americano',
-      description: 'Expresso diluído, menos intenso que o tradicional',
-    },
-  ])
+  // const [checkoutProducts, setCheckoutProducts] = useState([])
+  const { products } = useContext(ProductsContext)
+
+  // useEffect(() => {
+  //   const storedProducts = localStorage.getItem('checkoutProducts')
+  //   if (storedProducts) {
+  //     setCheckoutProducts(JSON.parse(storedProducts))
+  //     // localStorage.removeItem('checkoutProducts')
+  //   }
+
+  useEffect(() => {
+    console.log(products)
+  }, [products])
+  // }, [])
+
+  console.log(products)
 
   return (
     <>
-      {produCart.map((product) => (
+      {products.map((product) => (
         <CartCardContainer key={product.id}>
           <div className="teste">
             <figure className="container_figure">

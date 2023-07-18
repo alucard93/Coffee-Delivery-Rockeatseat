@@ -1,4 +1,3 @@
-import React from 'react'
 import { HeroSectionContainer } from './styles'
 import ShoppingCart from '../../../assets/hero/hero-cart.svg'
 import Clock from '../../../assets/hero/hero-clock.svg'

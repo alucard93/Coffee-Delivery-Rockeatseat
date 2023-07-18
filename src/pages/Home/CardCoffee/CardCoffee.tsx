@@ -1,31 +1,17 @@
 import { CardContainer } from './styles'
 import { Minus, Plus } from 'phosphor-react'
 import ButtonCard from '../../../assets/Button_Card.svg'
-import { useState } from 'react'
+import { useContext, useEffect } from 'react'
+import { ProductsContext } from '../../../contexts/ProductsContext'
 
-interface ICardCoffee {
-  id: string
-  img: string
-  type: string[]
-  name: string
-  description: string
-}
+export const CardCoffee = () => {
+  const { products, menuCoffee, handlePlusClick } = useContext(ProductsContext)
 
-interface IMenuCoffee {
-  menuCoffee: ICardCoffee[]
-}
+  // useEffect(() => {
+  //   localStorage.setItem('checkoutProducts', JSON.stringify(products))
+  // }, [products])
 
-export const CardCoffee = ({ menuCoffee }: IMenuCoffee) => {
-  const [selectedCardIds, setSelectedCardIds] = useState<string[]>([])
-
-  const handlePlusClick = (cardId: string) => {
-    setSelectedCardIds((prevSelectedCardIds) => [
-      ...prevSelectedCardIds,
-      cardId,
-    ])
-  }
-  // console.log(selectedCardIds)
-
+  console.log(products)
   return (
     <CardContainer>
       <section>
@@ -55,10 +41,14 @@ export const CardCoffee = ({ menuCoffee }: IMenuCoffee) => {
                       <div className="container_button">
                         <Minus size={14} />
                         <span>1</span>
-                        <Plus size={14} onClick={() => handlePlusClick(id)} />
+                        <Plus size={14} />
                       </div>
                       <figure className="container_icon_cart">
-                        <img src={ButtonCard} alt="" />
+                        <img
+                          src={ButtonCard}
+                          alt=""
+                          onClick={() => handlePlusClick(id)}
+                        />
                       </figure>
                     </div>
                   </div>
