@@ -184,9 +184,11 @@ export const CardContainer = styled.div`
   .container_icon_cart {
     display: flex;
     align-items: center;
+    cursor: pointer;
   }
 
   .container_button > svg {
     color: ${({ theme }) => theme.purple};
+    cursor: pointer;
   }
 `

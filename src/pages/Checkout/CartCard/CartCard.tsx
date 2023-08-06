@@ -6,7 +6,7 @@ import { ProductsContext } from '../../../contexts/ProductsContext'
 
 export const CartCard = () => {
   // const [checkoutProducts, setCheckoutProducts] = useState([])
-  const { products } = useContext(ProductsContext)
+  const { products, handlePlusDelete } = useContext(ProductsContext)
 
   // useEffect(() => {
   //   const storedProducts = localStorage.getItem('checkoutProducts')
@@ -38,7 +38,10 @@ export const CartCard = () => {
                   <span>1</span>
                   <Plus size={14} />
                 </div>
-                <div className="container_remove_icon">
+                <div
+                  className="container_remove_icon"
+                  onClick={() => handlePlusDelete(product.id)}
+                >
                   <Trash size={16} />
                   <p>REMOVER</p>
                 </div>

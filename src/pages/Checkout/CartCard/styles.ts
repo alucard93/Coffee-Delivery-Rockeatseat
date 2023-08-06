@@ -72,6 +72,7 @@ export const CartCardContainer = styled.div`
 
   .container_button > svg {
     color: ${({ theme }) => theme.purple};
+    cursor: pointer;
   }
 
   .container_remove_icon {
@@ -87,10 +88,12 @@ export const CartCardContainer = styled.div`
     padding: 0 8px;
     border-radius: 6px;
     background-color: ${({ theme }) => theme['base-button']};
+    cursor: pointer;
   }
 
   .container_remove_icon > svg {
     color: ${({ theme }) => theme.purple};
+    cursor: pointer;
   }
 
   .container_remove_icon > p {

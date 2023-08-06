@@ -150,6 +150,7 @@ export const CheckoutContainer = styled.section`
     flex: 1 0 0;
 
     background-color: ${({ theme }) => theme['base-button']};
+    cursor: pointer;
   }
 
   .icon_payment {
@@ -274,5 +275,6 @@ export const CheckoutContainer = styled.section`
     line-height: 160%;
     text-transform: uppercase;
     color: ${({ theme }) => theme['white']};
+    cursor: pointer;
   }
 `

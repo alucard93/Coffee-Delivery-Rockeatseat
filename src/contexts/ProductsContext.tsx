@@ -38,6 +38,7 @@ interface ProductContextType {
   setProducts: Dispatch<SetStateAction<ICardCoffee[]>>
   menuCoffee: ICardCoffee[]
   handlePlusClick: (id: string) => void
+  handlePlusDelete: (id: string) => void
 }
 
 const menuCoffee = [
@@ -155,9 +156,21 @@ export const ProductsContextProvider = ({ children }: ProductProviderProps) => {
     setProducts((prevSelectedCards) => [...prevSelectedCards, ...findProduct])
   }
 
+  const handlePlusDelete = (cardId: string) => {
+    setProducts((prevSelectedCards) =>
+      prevSelectedCards.filter((product) => product.id !== cardId)
+    )
+  }
+
   return (
     <ProductsContext.Provider
-      value={{ products, setProducts, menuCoffee, handlePlusClick }}
+      value={{
+        products,
+        setProducts,
+        menuCoffee,
+        handlePlusClick,
+        handlePlusDelete,
+      }}
     >
       {children}
     </ProductsContext.Provider>
