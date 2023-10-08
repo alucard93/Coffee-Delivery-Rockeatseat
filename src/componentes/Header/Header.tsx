@@ -1,10 +1,14 @@
 import { HeaderContainer } from './styles'
+import { useContext } from 'react'
+import { ProductsContext } from '../../contexts/ProductsContext'
 import logo from '../../assets/Logo.svg'
 import Pin from '../../assets/Pin.svg'
 import ShoppingCart from '../../assets/Shopping_Cart.svg'
 import { NavLink } from 'react-router-dom'
 
 export const Header = () => {
+  const { countHeader } = useContext(ProductsContext)
+  console.log(countHeader)
   return (
     <HeaderContainer>
       <nav>
@@ -20,6 +24,7 @@ export const Header = () => {
             <NavLink to="/checkout">
               <img src={ShoppingCart} alt="icone do carrinho" />
             </NavLink>
+            <p className="countHeader">{countHeader}</p>
           </div>
         </div>
       </nav>

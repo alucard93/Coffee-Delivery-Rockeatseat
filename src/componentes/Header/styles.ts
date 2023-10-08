@@ -39,11 +39,34 @@ export const HeaderContainer = styled.header`
   }
 
   .border_shopping_cart {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: ${({ theme }) => theme['yellow-light']};
     padding: 8px;
     border-radius: 6px;
+  }
+
+  .countHeader {
+    position: absolute;
+    right: -8.345px;
+    top: -8px;
+    display: flex;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1000px;
+    background: var(--brand-yellow-dark, #c47f17);
+
+    color: var(--base-white, #fff);
+    text-align: center;
+    font-family: Roboto;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 130%;
+    letter-spacing: -0.72px;
   }
 `

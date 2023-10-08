@@ -1,9 +1,11 @@
+// @ts-nocheck
 import {
   createContext,
   Dispatch,
   ReactNode,
   SetStateAction,
   useState,
+  useEffect,
 } from 'react'
 
 import Express from '../assets/Expresso.svg'
@@ -31,6 +33,8 @@ interface ICardCoffee {
   type: string[]
   name: string
   description: string
+  count: number
+  price: number
 }
 
 interface ProductContextType {
@@ -48,6 +52,8 @@ const menuCoffee = [
     type: ['tradicional'],
     name: 'Expresso Tradicional',
     description: 'O tradicional café feito com água quente e grãos moídos',
+    count: 0,
+    price: 9.9,
   },
   {
     id: '2',
@@ -55,6 +61,8 @@ const menuCoffee = [
     type: ['tradicional'],
     name: 'Expresso Americano',
     description: 'Expresso diluído, menos intenso que o tradicional',
+    count: 0,
+    price: 9.9,
   },
   {
     id: '3',
@@ -62,6 +70,8 @@ const menuCoffee = [
     type: ['tradicional'],
     name: 'Expresso Cremoso',
     description: 'Café expresso tradicional com espuma cremosa',
+    count: 0,
+    price: 9.9,
   },
   {
     id: '4',
@@ -69,6 +79,8 @@ const menuCoffee = [
     type: ['tradicional', 'gelado'],
     name: 'Expresso Gelado',
     description: 'Bebida preparada com café expresso e cubos de gelo',
+    count: 0,
+    price: 9.9,
   },
   {
     id: '5',
@@ -76,6 +88,8 @@ const menuCoffee = [
     type: ['tradicional', 'com leite'],
     name: 'Café com Leite',
     description: 'Meio a meio de expresso tradicional com leite vaporizado',
+    count: 0,
+    price: 9.9,
   },
   {
     id: '6',
@@ -84,6 +98,8 @@ const menuCoffee = [
     name: 'Latte',
     description:
       'Uma dose de café expresso com o dobro de leite e espuma cremosa',
+    count: 0,
+    price: 9.9,
   },
   {
     id: '7',
@@ -92,6 +108,8 @@ const menuCoffee = [
     name: 'Cappuccino',
     description:
       'Bebida com canela feita de doses iguais de café, leite e espuma',
+    count: 0,
+    price: 9.9,
   },
   {
     id: '8',
@@ -100,6 +118,8 @@ const menuCoffee = [
     name: 'Macchiato',
     description:
       'Café expresso misturado com um pouco de leite quente e espuma',
+    count: 0,
+    price: 9.9,
   },
   {
     id: '9',
@@ -107,6 +127,8 @@ const menuCoffee = [
     type: ['tradicional', 'com leite'],
     name: 'Mocaccino',
     description: 'Café expresso com calda de chocolate, pouco leite e espuma',
+    count: 0,
+    price: 9.9,
   },
   {
     id: '10',
@@ -114,6 +136,8 @@ const menuCoffee = [
     type: ['especial', 'com leite'],
     name: 'Chocolate Quente',
     description: 'Bebida feita com chocolate dissolvido no leite quente e café',
+    count: 0,
+    price: 9.9,
   },
   {
     id: '11',
@@ -122,6 +146,8 @@ const menuCoffee = [
     name: 'Cubano',
     description:
       'Drink gelado de café expresso com rum, creme de leite e hortelã',
+    count: 0,
+    price: 9.9,
   },
   {
     id: '12',
@@ -129,6 +155,8 @@ const menuCoffee = [
     type: ['especial'],
     name: 'Havaiano',
     description: 'Bebida adocicada preparada com café e leite de coco',
+    count: 0,
+    price: 9.9,
   },
   {
     id: '13',
@@ -136,6 +164,8 @@ const menuCoffee = [
     type: ['especial'],
     name: 'Árabe',
     description: 'Bebida preparada com grãos de café árabe e especiarias',
+    count: 0,
+    price: 9.9,
   },
   {
     id: '14',
@@ -143,6 +173,8 @@ const menuCoffee = [
     type: ['especial', 'alcoólico'],
     name: 'Irlandês',
     description: 'Bebida a base de café, uísque irlandês, açúcar e chantilly',
+    count: 0,
+    price: 9.9,
   },
 ]
 
@@ -150,21 +182,68 @@ export const ProductsContext = createContext({} as ProductContextType)
 
 export const ProductsContextProvider = ({ children }: ProductProviderProps) => {
   const [products, setProducts] = useState<ICardCoffee[]>([])
+  const [countHeader, setCountHeader] = useState<number>(0)
 
-  const handlePlusClick = (cardId: string) => {
-    const findProduct = menuCoffee.filter((product) => product.id === cardId)
-    setProducts((prevSelectedCards) => [...prevSelectedCards, ...findProduct])
+  useEffect(() => {}, [countHeader])
+
+  const handlePlusClick = (cardId: number) => {
+    setCountHeader(countHeader + 1)
+    setProducts((prevSelectedCards) => {
+      // Verifica se o cardId já está presente nos produtos selecionados
+      const isCardAlreadySelected = prevSelectedCards.some(
+        (product) => product.id === cardId
+      )
+
+      if (isCardAlreadySelected) {
+        // Se o cardId já está na lista, aumenta o contador desse produto
+        return prevSelectedCards.map((product) => {
+          if (product.id === cardId) {
+            const updatedCount = Math.max(0, product.count + 1)
+            return { ...product, count: updatedCount }
+          }
+          return product
+        })
+      } else {
+        // Se o cardId não estiver na lista, tenta encontrá-lo no array menuCoffee
+        const findProduct = menuCoffee.find((product) => product.id === cardId)
+        if (findProduct) {
+          // Se o produto for encontrado, adiciona-o à lista de produtos selecionados com um contador inicial de 1
+          return [...prevSelectedCards, { ...findProduct, count: 1 }]
+        }
+      }
+
+      // Retorna a lista não modificada se o cardId não for encontrado em nenhum lugar
+      return prevSelectedCards
+    })
   }
 
-  const handlePlusDelete = (cardId: string) => {
-    setProducts((prevSelectedCards) =>
-      prevSelectedCards.filter((product) => product.id !== cardId)
-    )
+  const handlePlusDelete = (cardId: number) => {
+    if (countHeader > 0) {
+      setCountHeader(countHeader - 1)
+    }
+    setProducts((prevSelectedCards) => {
+      const updatedSelectedCards = prevSelectedCards.map((product) => {
+        if (product.id === cardId) {
+          // Se o cardId corresponder ao item que estamos removendo, decremente o count
+          const updatedCount = Math.max(0, product.count - 1)
+          return { ...product, count: updatedCount }
+        }
+        return product
+      })
+
+      // Use o filter para remover itens com count igual a zero
+      const filteredSelectedCards = updatedSelectedCards.filter(
+        (product) => product.count > 0
+      )
+
+      return filteredSelectedCards
+    })
   }
 
   return (
     <ProductsContext.Provider
       value={{
+        countHeader,
         products,
         setProducts,
         menuCoffee,

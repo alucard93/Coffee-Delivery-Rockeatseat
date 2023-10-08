@@ -6,7 +6,8 @@ import { ProductsContext } from '../../../contexts/ProductsContext'
 
 export const CartCard = () => {
   // const [checkoutProducts, setCheckoutProducts] = useState([])
-  const { products, handlePlusDelete } = useContext(ProductsContext)
+  const { products, handlePlusDelete, handlePlusClick } =
+    useContext(ProductsContext)
 
   // useEffect(() => {
   //   const storedProducts = localStorage.getItem('checkoutProducts')
@@ -20,8 +21,6 @@ export const CartCard = () => {
   }, [products])
   // }, [])
 
-  console.log(products)
-
   return (
     <>
       {products.map((product) => (
@@ -34,9 +33,12 @@ export const CartCard = () => {
               <p>{product.name}</p>
               <div className="container_button_remove">
                 <div className="container_button">
-                  <Minus size={14} />
-                  <span>1</span>
-                  <Plus size={14} />
+                  <Minus
+                    size={14}
+                    onClick={() => handlePlusDelete(product.id)}
+                  />
+                  <span>{product.count}</span>
+                  <Plus size={14} onClick={() => handlePlusClick(product.id)} />
                 </div>
                 <div
                   className="container_remove_icon"

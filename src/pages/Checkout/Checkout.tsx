@@ -37,6 +37,13 @@ export const Checkout = () => {
     })
   }
 
+  const sumValuesProducts = products.reduce((acc, product) => {
+    const valueTotal = product.count * product.price
+    return acc + valueTotal
+  }, 0)
+
+  const valueTotal = sumValuesProducts + 3.5
+
   return (
     <CheckoutContainer>
       <article className="container_form">
@@ -140,6 +147,7 @@ export const Checkout = () => {
         <h3>Cafés selecionados</h3>
         <div className="container_cart">
           <CartCard />
+          {console.log(products)}
           {products.length === 0 && (
             <div className="container_paragraphs">
               <div className="container_paragraph top">
@@ -162,13 +170,15 @@ export const Checkout = () => {
               </div>
             </div>
           )}
-
-          {products.length > 0 && (
+          {products?.length > 0 && (
             <div className="container_paragraphs">
               <div className="container_paragraph top">
                 <p className="text_total">Total de itens</p>
                 <p className="text_money">
-                  R$ <span className="text_price_cart">29,70</span>
+                  R${' '}
+                  <span className="text_price_cart">
+                    {sumValuesProducts.toFixed(2)}
+                  </span>
                 </p>
               </div>
               <div className="container_paragraph">
@@ -180,12 +190,14 @@ export const Checkout = () => {
               <div className="container_paragraph_total">
                 <p className="text_total_last">Total</p>
                 <p className="text_money_last">
-                  R$ <span className="text_price_cart_last">33,20</span>
+                  R${' '}
+                  <span className="text_price_cart_last">
+                    {valueTotal.toFixed(2)}
+                  </span>
                 </p>
               </div>
             </div>
           )}
-
           <button className="confirm_button" onClick={handleValidateAndSubmit}>
             CONFIRMAR PEDIDO
           </button>
