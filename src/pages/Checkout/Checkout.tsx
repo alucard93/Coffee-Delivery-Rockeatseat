@@ -14,7 +14,6 @@ import { ProductsContext } from '../../contexts/ProductsContext'
 export const Checkout = () => {
   const [paymentMethod, setPaymentMethod] = useState(null)
   const { products } = useContext(ProductsContext)
-  console.log(products)
 
   const {
     register,
@@ -120,21 +119,27 @@ export const Checkout = () => {
           </div>
           <div className="container_forms_payments">
             <div
-              className="container_form_payment"
+              className={`container_form_payment ${
+                paymentMethod === 'Cartão de Crédito' ? 'selected' : ''
+              }`}
               onClick={() => handlePaymentMethod('Cartão de Crédito')}
             >
               <CreditCard className="icon_payment" size={22} />
               <p className="text_payment">CARTÃO DE CRÉDITO</p>
             </div>
             <div
-              className="container_form_payment"
+              className={`container_form_payment ${
+                paymentMethod === 'Cartão de Débito' ? 'selected' : ''
+              }`}
               onClick={() => handlePaymentMethod('Cartão de Débito')}
             >
               <Bank className="icon_payment" size={22} />
               <p className="text_payment">CARTÃO DE DÉDITO</p>
             </div>
             <div
-              className="container_form_payment"
+              className={`container_form_payment ${
+                paymentMethod === 'Dinheiro' ? 'selected' : ''
+              }`}
               onClick={() => handlePaymentMethod('Dinheiro')}
             >
               <Money className="icon_payment" size={22} />
@@ -147,7 +152,6 @@ export const Checkout = () => {
         <h3>Cafés selecionados</h3>
         <div className="container_cart">
           <CartCard />
-          {console.log(products)}
           {products.length === 0 && (
             <div className="container_paragraphs">
               <div className="container_paragraph top">

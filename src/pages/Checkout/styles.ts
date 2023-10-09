@@ -148,9 +148,16 @@ export const CheckoutContainer = styled.section`
     align-items: center;
     gap: 12px;
     flex: 1 0 0;
+    white-space: nowrap;
 
     background-color: ${({ theme }) => theme['base-button']};
     cursor: pointer;
+  }
+
+  .container_form_payment.selected {
+    /* Estilos para os botões quando selecionados */
+    background-color: #007bff; /* Cor de fundo azul quando selecionado */
+    color: #fff; /* Cor do texto branco quando selecionado */
   }
 
   .icon_payment {
