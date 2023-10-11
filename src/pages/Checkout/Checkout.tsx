@@ -10,6 +10,7 @@ import { CheckoutContainer } from './styles'
 import { CartCard } from './CartCard/CartCard'
 import { useForm } from 'react-hook-form'
 import { ProductsContext } from '../../contexts/ProductsContext'
+import { NavLink } from 'react-router-dom'
 
 export const Checkout = () => {
   const [paymentMethod, setPaymentMethod] = useState(null)
@@ -202,9 +203,14 @@ export const Checkout = () => {
               </div>
             </div>
           )}
-          <button className="confirm_button" onClick={handleValidateAndSubmit}>
-            CONFIRMAR PEDIDO
-          </button>
+          <NavLink className="link_confirm_button" to="/success">
+            <button
+              className="confirm_button"
+              onClick={handleValidateAndSubmit}
+            >
+              CONFIRMAR PEDIDO
+            </button>
+          </NavLink>
         </div>
       </article>
     </CheckoutContainer>

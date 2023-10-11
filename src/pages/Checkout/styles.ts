@@ -155,9 +155,9 @@ export const CheckoutContainer = styled.section`
   }
 
   .container_form_payment.selected {
-    /* Estilos para os botões quando selecionados */
-    background-color: #007bff; /* Cor de fundo azul quando selecionado */
-    color: #fff; /* Cor do texto branco quando selecionado */
+    border-radius: 6px;
+    border: 1px solid var(--brand-purple, #8047f8);
+    background: var(--brand-purple-light, #ebe5f9);
   }
 
   .icon_payment {
@@ -260,7 +260,9 @@ export const CheckoutContainer = styled.section`
     line-height: 130%;
     color: ${({ theme }) => theme['base-subtitle']};
   }
-
+  .link_confirm_button {
+    text-decoration: none;
+  }
   .confirm_button {
     display: flex;
     padding: 12px 8px;
